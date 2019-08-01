@@ -1,0 +1,1018 @@
+{
+	"info": {
+		"_postman_id": "e2503a9a-1cf6-4113-8ff0-ecbb8dea71c9",
+		"name": "nia-trn-conta-poupanca-extrato",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "variacao op - 1",
+			"item": [
+				{
+					"name": "001 - Recomecar",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2e944c8-c759-41a0-ace8-41b14ff04af5",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Recomecar\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"OK!\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"recomecar\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002 - extrato",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "755b6403-46c7-49d8-9e2a-2f7458880a43",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f435e39a-fe79-48e7-b594-9bf65438d829",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Desambigua extrato\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"extrato\")",
+									"    pm.expect(pm.response.text()).to.include(\"quer\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"extrato\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - conta poupanca",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "755b6403-46c7-49d8-9e2a-2f7458880a43",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d832d5e9-c6eb-41ec-8d59-4fd2846eb38e",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Solicita agencia\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Informe\")",
+									"    && pm.expect(pm.response.text()).to.include(\"agência\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"poupança\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - slot agência",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "15c4a78f-066a-4476-a12c-50782f7a5044",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Solicita conta\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Informe\")",
+									"    && pm.expect(pm.response.text()).to.include(\"conta\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"{{agencia}}\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - slot conta corrente",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a919188d-8f88-40e3-8f58-b0fc856a0a48",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Escolha a variação de poupança\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Escolha a variação de poupança\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"{{conta}}\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - slot variacao",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ff43685-44fe-4a95-a3c8-ae9152f35b41",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Extrato retornado\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Extrato\")",
+									"    && pm.expect(pm.response.text()).to.include(\"Variação\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"1\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "variação op - 2",
+			"item": [
+				{
+					"name": "001 - Recomecar",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2e944c8-c759-41a0-ace8-41b14ff04af5",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Recomecar\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"OK!\");",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"recomecar\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002 - extrato",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "755b6403-46c7-49d8-9e2a-2f7458880a43",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f435e39a-fe79-48e7-b594-9bf65438d829",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Desambigua extrato\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"extrato\")",
+									"    pm.expect(pm.response.text()).to.include(\"quer\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"extrato\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003 - conta poupanca",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "755b6403-46c7-49d8-9e2a-2f7458880a43",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d832d5e9-c6eb-41ec-8d59-4fd2846eb38e",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Solicita agencia\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Informe\")",
+									"    && pm.expect(pm.response.text()).to.include(\"agência\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"poupança\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004 - slot agência",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "15c4a78f-066a-4476-a12c-50782f7a5044",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Solicita conta\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Informe\")",
+									"    && pm.expect(pm.response.text()).to.include(\"conta\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"{{agencia}}\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005 - slot conta corrente",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a919188d-8f88-40e3-8f58-b0fc856a0a48",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Escolha a variação de poupança\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Escolha a variação de poupança\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+								"type": "text"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"{{conta}}\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006 - slot variacao",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ff43685-44fe-4a95-a3c8-ae9152f35b41",
+								"exec": [
+									"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+									"",
+									"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+									"",
+									"pm.test(\"Extrato retornado\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Extrato\")",
+									"    && pm.expect(pm.response.text()).to.include(\"Variação\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Server-Authorization-Key",
+								"value": "{{authorizationKey}}"
+							},
+							{
+								"key": "User-Agent",
+								"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|"
+							},
+							{
+								"key": "X-CFE-Deviceinfo",
+								"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ=="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"2\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+						},
+						"url": {
+							"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wa",
+								"webhook",
+								"{{idCanal}}"
+							],
+							"query": [
+								{
+									"key": "testMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

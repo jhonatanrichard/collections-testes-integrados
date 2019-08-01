@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "57fc3b0b-a9e0-4636-ba47-06aa2fe3856e",
+		"name": "nia-trn-limpar-contexto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "recomecar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+						"type": "text"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"recomecar\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+				},
+				"url": {
+					"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode={{isTestMode}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wa",
+						"webhook",
+						"{{idCanal}}"
+					],
+					"query": [
+						{
+							"key": "testMode",
+							"value": "{{isTestMode}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recarga celular",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "User-Agent",
+						"type": "text",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"type": "text",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ=="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"recarga celular\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+				},
+				"url": {
+					"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode={{isTestMode}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wa",
+						"webhook",
+						"{{idCanal}}"
+					],
+					"query": [
+						{
+							"key": "testMode",
+							"value": "{{isTestMode}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

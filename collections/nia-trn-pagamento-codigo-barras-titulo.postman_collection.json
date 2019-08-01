@@ -1,0 +1,789 @@
+{
+	"info": {
+		"_postman_id": "66f41f5f-f939-4b72-99e1-f40478019570",
+		"name": "nia-trn-pagamento-codigo-barras-titulo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "001 - Recomecar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0765ffc-5790-47a1-b28c-0bc5b1b09961",
+						"exec": [
+							"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+							"",
+							"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+							"",
+							"pm.test(\"Recomecar\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"OK!\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Server-Authorization-Key",
+						"value": "{{authorizationKey}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+						"type": "text"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"recomecar\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+				},
+				"url": {
+					"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wa",
+						"webhook",
+						"{{idCanal}}"
+					],
+					"query": [
+						{
+							"key": "testMode",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "002 - Codigo Barra Titulo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0765ffc-5790-47a1-b28c-0bc5b1b09961",
+						"exec": [
+							"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+							"",
+							"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+							"",
+							"pm.test(\"Solicita agencia\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Informe\")",
+							"    && pm.expect(pm.response.text()).to.include(\"agência\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Server-Authorization-Key",
+						"value": "{{authorizationKey}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"07790001161200000050001915664567979610000002000\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+				},
+				"url": {
+					"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wa",
+						"webhook",
+						"{{idCanal}}"
+					],
+					"query": [
+						{
+							"key": "testMode",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "003 - slot agência",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "15c4a78f-066a-4476-a12c-50782f7a5044",
+						"exec": [
+							"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+							"",
+							"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+							"",
+							"pm.test(\"Solicita conta\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Informe\")",
+							"    && pm.expect(pm.response.text()).to.include(\"conta\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Server-Authorization-Key",
+						"value": "{{authorizationKey}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+						"type": "text"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"{{agencia}}\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+				},
+				"url": {
+					"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wa",
+						"webhook",
+						"{{idCanal}}"
+					],
+					"query": [
+						{
+							"key": "testMode",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "004 - slot conta corrente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "37bfb05a-b7d0-4628-95eb-c2ec6d07d19a",
+						"exec": [
+							"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+							"    ",
+							"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+							"",
+							"pm.test(\"Verifica Resposta\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Confira os dados abaixo\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Server-Authorization-Key",
+						"value": "{{authorizationKey}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+						"type": "text"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"{{conta}}\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+				},
+				"url": {
+					"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wa",
+						"webhook",
+						"{{idCanal}}"
+					],
+					"query": [
+						{
+							"key": "testMode",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "005 - Confirmacao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "393f636e-2f2b-4bbd-b3e2-64b1c64be50c",
+						"exec": [
+							"pm.environment.unset(\"hash_pagamento_barras_titulo\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "37bfb05a-b7d0-4628-95eb-c2ec6d07d19a",
+						"exec": [
+							"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+							"    ",
+							"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+							"",
+							"pm.test(\"Verifica link de confirmação\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Seu pagamento será realizado hoje\");",
+							"});",
+							"",
+							"var respPartes = responseBody.split(\"/\");",
+							"var hashLink = respPartes[respPartes.length - 1];",
+							"",
+							"if (pm.environment.get(\"confirmarTransacaoComSenha\") === \"true\") {",
+							"    pm.environment.set(\"hash_pagamento_barras_titulo\", hashLink);",
+							"} ",
+							"else",
+							"{",
+							"    pm.environment.set(\"hash_pagamento_barras_titulo\", hashLink);",
+							"    pm.environment.set(\"url_transaction\", \"http://localhost:3005/te\");",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Server-Authorization-Key",
+						"type": "text",
+						"value": "{{authorizationKey}}"
+					},
+					{
+						"key": "User-Agent",
+						"type": "text",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"type": "text",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ=="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"messages\": [ {\n    \"from\": \"{{telefone}}\",\n    \"id\": \"{{hash_id}}\",\n    \"timestamp\": \"{{timestamp}}\",\n    \"text\": {\n      \"body\": \"Sim\"\n    },\n    \"type\": \"text\"\n  } ]\n} "
+				},
+				"url": {
+					"raw": "{{url}}/wa/webhook/{{idCanal}}?testMode=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wa",
+						"webhook",
+						"{{idCanal}}"
+					],
+					"query": [
+						{
+							"key": "testMode",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "006 - captura dados transaction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9ce4e14-419d-40e4-a2ff-c20149d197a4",
+						"exec": [
+							"tests[\"Status Code\"] = (responseCode.code === 200);",
+							"",
+							"",
+							"if (pm.environment.get(\"confirmarTransacaoComSenha\") === \"true\") {",
+							"    ",
+							"    $ = cheerio.load(pm.response.text()); ",
+							"    var data = $('script').text();",
+							"    var key_recarga = data.substring(17,33);",
+							"  ",
+							"    const encrypt = (message, key) => {",
+							"        var result = '';",
+							"        var index = 0;",
+							"        for (index = 1; index < 7; index += 1) {",
+							"            const digitSum = parseInt(message[index], 10) + parseInt(key[index], 10);",
+							"            result += digitSum > 9 ? digitSum - 10 : digitSum;",
+							"        }",
+							"        return result;",
+							"    };",
+							"    ",
+							"    var encryptedPassword = encrypt(JSON.stringify(pm.environment.get(\"senhaSeisDigitos\")), JSON.stringify(key_recarga));",
+							"    ",
+							"    postman.setGlobalVariable(\"json_completo_barras_titulo\", JSON.stringify({\"transactionInfo\": responseBody, \"encryptedPassword\" : encryptedPassword}));",
+							"    pm.environment.set(\"variable_key\", \"variable_value\");",
+							"    postman.setGlobalVariable(\"encryptedPassword\",encryptedPassword);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "394f2885-b12b-44ce-a355-e69c184831d4",
+						"exec": [
+							"pm.globals.unset(\"json_completo_barras_titulo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url_transaction}}/{{hash_pagamento_barras_titulo}}",
+					"host": [
+						"{{url_transaction}}"
+					],
+					"path": [
+						"{{hash_pagamento_barras_titulo}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Cookies",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"556183057860\",\n    \"id\": \"3AF99CB6BE490DCAF641\",\n    \"timestamp\": \"1518694235\",\n    \"text\": {\n      \"body\": \"oi\"\n    },\n    \"type\": \"text\"\n  } ]\n} \n"
+						},
+						"url": {
+							"raw": "http://172.20.244.25:9090/wa/webhook",
+							"protocol": "http",
+							"host": [
+								"172",
+								"20",
+								"244",
+								"25"
+							],
+							"port": "9090",
+							"path": [
+								"wa",
+								"webhook"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "javascript",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "",
+							"name": "Access-Control-Allow-Credentials",
+							"description": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "",
+							"name": "Access-Control-Allow-Headers",
+							"description": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "",
+							"name": "Access-Control-Allow-Methods",
+							"description": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "",
+							"name": "Access-Control-Allow-Origin",
+							"description": ""
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": ""
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"name": "Content-Encoding",
+							"description": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "51",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 Oct 2015 06:15:28 GMT",
+							"name": "Date",
+							"description": ""
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.6.2",
+							"name": "Server",
+							"description": ""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding",
+							"name": "Vary",
+							"description": ""
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Sails <sailsjs.org>",
+							"name": "X-Powered-By",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\"cookies\":{\"foo1\":\"bar\",\"foo2\":\"bar\"}}"
+				}
+			]
+		},
+		{
+			"name": "007 - captura dados transaction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "72690152-de5b-490b-b0d9-ad4c742f03d5",
+						"exec": [
+							"console.log(request.method + \" - \" + request.name, \"responseBody: \" + responseBody);",
+							"",
+							"tests[\"Status Code Sucesso\"] = responseCode.code === 200;",
+							"",
+							"pm.test(\"Verifica Confirmação\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"true\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aa845570-ae05-4c08-8e65-cf8a01f1dfa2",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Server-Authorization-Key",
+						"value": "{{authorizationKey}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "motorola;XT1563;Android;6.0.1;MPD24.107-52;mov-android-app;6.33.0.2;pt_BR;cpu=0|clock=1651200|ram=1960012 kB|espacoSDInterno=25,45 GB|espacoSDExterno=25,45 GB|isSmartphone=true|nfc=true|camera=true|cameraFrontal=true|root=false|reconhecimentoVoz=true|resolucao=1080_1776|densidade=3.0|imei=358975061957891|",
+						"type": "text"
+					},
+					{
+						"key": "X-CFE-Deviceinfo",
+						"value": "eyJpZGgiOiIzMTcwZWJjZWZkOGU5ZmI2MGRkZjdjZTUzY2QyZmMwYmY2OTJiODJiYjQwMjI3ZTZmOThmNjcyZDhlYTAzMTVmYTU2ZmY2MmNmNjM2YzZhNSIsImFwZWxpZG8iOiJmYWJyaWNpb3BlZHJlaXJhIiwibGF0aXR1ZGUiOiIiLCJsb25naXR1ZGUiOiIiLCJpZERpc3Bvc2l0aXZvIjoiMjdlZGVjYTJiMGIyNWViZDg0ZmUyZmIzNDRkNjlhZmQifQ==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"encryptedPassword\":\"{{encryptedPassword}}\",\n  \"passwordLength\": \"{{passwordLength}}\"\n}"
+				},
+				"url": {
+					"raw": "{{conversation_core}}/pending-transactions/{{hash_pagamento_barras_titulo}}",
+					"host": [
+						"{{conversation_core}}"
+					],
+					"path": [
+						"pending-transactions",
+						"{{hash_pagamento_barras_titulo}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Cookies",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"messages\": [ {\n    \"from\": \"556183057860\",\n    \"id\": \"3AF99CB6BE490DCAF641\",\n    \"timestamp\": \"1518694235\",\n    \"text\": {\n      \"body\": \"oi\"\n    },\n    \"type\": \"text\"\n  } ]\n} \n"
+						},
+						"url": {
+							"raw": "http://172.20.244.25:9090/wa/webhook",
+							"protocol": "http",
+							"host": [
+								"172",
+								"20",
+								"244",
+								"25"
+							],
+							"port": "9090",
+							"path": [
+								"wa",
+								"webhook"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "javascript",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "",
+							"name": "Access-Control-Allow-Credentials",
+							"description": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "",
+							"name": "Access-Control-Allow-Headers",
+							"description": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "",
+							"name": "Access-Control-Allow-Methods",
+							"description": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "",
+							"name": "Access-Control-Allow-Origin",
+							"description": ""
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": ""
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"name": "Content-Encoding",
+							"description": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "51",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 Oct 2015 06:15:28 GMT",
+							"name": "Date",
+							"description": ""
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.6.2",
+							"name": "Server",
+							"description": ""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding",
+							"name": "Vary",
+							"description": ""
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Sails <sailsjs.org>",
+							"name": "X-Powered-By",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\"cookies\":{\"foo1\":\"bar\",\"foo2\":\"bar\"}}"
+				}
+			]
+		}
+	]
+}
